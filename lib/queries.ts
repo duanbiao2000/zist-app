@@ -1,3 +1,4 @@
+// 导入queryBuilder函数，用于与PlanetScale数据库进行查询操作
 import { queryBuilder } from './planetscale';
 
 export const getUser = async (username: string) => {
@@ -13,6 +14,7 @@ export const getUser = async (username: string) => {
 export const updateUser = async (username: string, autotagcount: number) => {
   const userData = await queryBuilder
     .updateTable('users')
+    // 设置autotagcount
     .set({ autotagcount })
     .where('username', '=', username)
     .executeTakeFirst();
